@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThrusUsCorp™ — Инвестировать</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0b1e3d; --gold: #c9a84c; --gold-light: #e8c97a;
+      --cream: #f5f1e8; --text: #1a1a2e; --muted: #5a6375;
+      --red: #c0392b; --red-bg: #fff5f5; --green: #1a7a4a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+    nav {
+      background: rgba(11,30,61,0.97); backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem; height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif; color: var(--gold);
+      font-size: 1.3rem; font-weight: 700; text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .shield {
+      width: 28px; height: 32px; background: var(--gold);
+      clip-path: polygon(50% 0%,100% 20%,100% 60%,50% 100%,0% 60%,0% 20%);
+    }
+    .nav-back { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--gold-light); }
+
+    .page-wrap {
+      max-width: 960px; margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      display: grid; grid-template-columns: 1fr 380px; gap: 3rem; align-items: start;
+    }
+
+    /* ─── LEFT: INFO ─── */
+    .info-side {}
+    .breadcrumb { font-size: 0.75rem; color: var(--muted); margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .page-tag { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+    .page-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; line-height: 1.2; margin-bottom: 0.5rem; }
+
+    .yield-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+    .yield-card {
+      background: white; border: 1px solid #e8e0cc; border-radius: 4px;
+      padding: 1.2rem; text-align: center; cursor: pointer;
+      transition: all 0.2s; position: relative;
+    }
+    .yield-card:hover, .yield-card.active { border-color: var(--gold); box-shadow: 0 4px 20px rgba(201,168,76,0.15); }
+    .yield-card.active::before { content: '✓'; position: absolute; top: 8px; right: 10px; color: var(--gold); font-size: 0.8rem; font-weight: 700; }
+    .yield-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); font-weight: 700; }
+    .yield-period { font-size: 0.75rem; color: var(--muted); }
+
+    .info-block { background: white; border: 1px solid #e8e0cc; border-radius: 4px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .info-block h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .info-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .info-list li { font-size: 0.88rem; color: var(--muted); display: flex; gap: 0.6rem; line-height: 1.5; }
+    .info-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; }
+
+    .urgency-bar {
+      background: linear-gradient(135deg, #7f0000, #c0392b);
+      color: white; border-radius: 4px; padding: 1rem 1.4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .urgency-text { font-size: 0.88rem; font-weight: 500; }
+    .urgency-timer { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #ffcdd2; font-weight: 700; letter-spacing: 0.05em; }
+
+    .team-section { margin-right: 15rem; margin-left: 15rem; margin-bottom: 5rem; }
+    .team-grid { display: grid; grid-template-rows: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .team-card {
+      background: white; border: 1px solid #e8e0cc; border-radius: 4px;
+      padding: 1.5rem; text-align: center;
+      transition: transform 0.2s;
+    }
+    .team-card:hover { transform: translateY(-3px); }
+    .team-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--navy));
+      margin: 0 auto 1rem;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: white; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .team-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .team-irony { font-size: 0.68rem; color: var(--red); font-style: italic; line-height: 1.4; }
+
+
+    /* ─── RIGHT: FORM ─── */
+    .form-card {
+      background: white; border: 1px solid #e8e0cc; border-radius: 6px;
+      padding: 2rem; position: sticky; top: 2rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.07);
+    }
+    .form-card h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 0.3rem; }
+    .form-subtitle { font-size: 0.8rem; color: var(--muted); margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #f0ebe0; }
+    .form-subtitle em { color: var(--muted); font-style: italic; }
+
+    .field { margin-bottom: 1.2rem; }
+    .field label { display: block; font-size: 0.78rem; font-weight: 500; color: var(--text); margin-bottom: 0.4rem; letter-spacing: 0.03em; }
+    .field label .hint { font-weight: 400; color: var(--red); font-style: italic; font-size: 0.7rem; }
+    .field input, .field select {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1px solid #ddd; border-radius: 3px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      color: var(--text); background: #fafafa;
+      transition: border-color 0.2s; outline: none;
+    }
+    .field input:focus, .field select:focus { border-color: var(--gold); background: white; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+    .amount-presets { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+    .preset {
+      font-size: 0.75rem; padding: 0.3rem 0.7rem;
+      border: 1px solid #ddd; border-radius: 20px;
+      cursor: pointer; color: var(--muted); background: #fafafa;
+      transition: all 0.2s;
+    }
+    .preset:hover { border-color: var(--gold); color: var(--navy); }
+
+    .privacy-note { font-size: 0.7rem; color: var(--muted); display: flex; gap: 0.5rem; align-items: flex-start; margin-bottom: 1.2rem; }
+    .privacy-note input[type=checkbox] { margin-top: 2px; flex-shrink: 0; }
+    .privacy-note a { color: var(--gold); }
+    .privacy-note .red-note { color: var(--red); font-style: italic; }
+
+    .submit-btn {
+      width: 100%; padding: 1rem;
+      background: var(--gold); color: var(--navy);
+      border: none; border-radius: 3px; cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem; font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: var(--gold-light); }
+
+    .secure-badges { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f0ebe0; }
+    .secure-badge { font-size: 0.7rem; color: var(--muted); display: flex; align-items: center; gap: 0.3rem; }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: white; border-radius: 8px; padding: 3rem 2.5rem;
+      max-width: 440px; width: 90%; text-align: center;
+      animation: pop-in 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes pop-in { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    .modal-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+    .modal h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.7rem; color: var(--navy); }
+    .modal p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.5rem; }
+    .modal-btn {
+      display: inline-block; background: var(--navy); color: white;
+      padding: 0.75rem 2rem; border-radius: 3px; text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
+      cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
+    }
+
+    .watermark {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%) rotate(-35deg);
+      font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900; color: rgba(192,57,43,0.04); pointer-events: none;
+      z-index: 1000; white-space: nowrap; user-select: none; letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .page-wrap { grid-template-columns: 1fr; }
+      .yield-cards { grid-template-columns: 1fr 1fr 1fr; }
+      .form-card { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="shield"></div>ThrusUsCorp™
+  </a>
+  <a href="index.html" class="nav-back"> Вернуться на главную</a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- LEFT -->
+  <div class="info-side">
+    <div class="breadcrumb">
+      <a href="index.html">Главная</a> / Инвестировать
+    </div>
+    <div class="page-tag">Эксклюзивное предложение</div>
+    <h1 class="page-title">Доверьте нам ваши деньги</h1>
+
+    <!-- Urgency bar -->
+    <div class="urgency-bar">
+      <div>
+        <div class="urgency-text">🔥 Предложение истекает через:</div>
+      </div>
+      <div class="urgency-timer" id="timer">23:47</div>
+    </div>
+
+    <!-- Yield cards -->
+    <div class="yield-cards">
+      <div class="yield-card" onclick="selectYield(this, '150%')">
+        <div class="yield-num">150%</div>
+        <div class="yield-period">в месяц</div>
+      </div>
+      <div class="yield-card active" onclick="selectYield(this, '300%')">
+        <div class="yield-num">300%</div>
+        <div class="yield-period">в месяц ★</div>
+      </div>
+      <div class="yield-card" onclick="selectYield(this, '500%')">
+        <div class="yield-num">500%</div>
+        <div class="yield-period">в месяц VIP</div>
+      </div>
+    </div>
+
+    <!-- Info block: условия -->
+    <div class="info-block">
+      <h3>📋 Условия инвестирования</h3>
+      <ul class="info-list">
+        <li>
+          Минимальный взнос — 10 000 ₽. Вывод средств — после «периода блокировки» 90 дней.
+        </li>
+        <li>
+          Прибыль начисляется автоматически на ваш личный кабинет. Для вывода — небольшая «комиссия за разблокировку».
+        </li>
+        <li>
+          Приглашайте друзей и получайте 20% от их вклада. Ваши друзья тоже приглашают друзей!
+        </li>
+        <li>
+          Договор направляется на email в течение 3–5 рабочих недель.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Info block: гарантии -->
+    <div class="info-block">
+      <h3>🛡️ Наши «гарантии»</h3>
+      <ul class="info-list">
+        <li>Ваши средства застрахованы нашей внутренней страховкой ThrusUsCorp™.
+        </li>
+        <li>В случае убытков — мы компенсируем из резервного фонда (при наличии).
+        </li>
+        <li>Все операции зарегистрированы в блокчейне ТрастЧейн™.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- RIGHT: FORM -->
+  <div class="form-card">
+    <h2>Форма инвестирования</h2>
+    <p class="form-subtitle">Заполните данные ниже. <em>Все поля обязательны — для вашей же безопасности.</em></p>
+
+    <div class="field">
+      <label>Ваше полное имя</label>
+      <input type="text" placeholder="Иванов Иван Иванович"/>
+    </div>
+
+    <div class="field">
+      <label>Номер карты</label>
+      <input type="text" placeholder="0000 0000 0000 0000" maxlength="19"/>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label>Срок действия</label>
+        <input type="text" placeholder="ММ/ГГ" maxlength="5"/>
+      </div>
+      
+      <div class="field">
+        <label>CVV</label>
+        <input type="text" placeholder="•••" maxlength="3"/>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Сумма инвестиции (₽)</label>
+      <div class="amount-presets">
+        <span class="preset" onclick="setAmount(10000)">10 000</span>
+        <span class="preset" onclick="setAmount(50000)">50 000</span>
+        <span class="preset" onclick="setAmount(100000)">100 000</span>
+        <span class="preset" onclick="setAmount(500000)">500 000</span>
+      </div>
+      <input type="number" id="amountInput" placeholder="Введите сумму" min="10000"/>
+    </div>
+
+    <div class="field">
+      <label>Пароль от личного кабинета</label>
+      <input type="password" placeholder="Ваш пароль от банка или почты"/>
+    </div>
+
+    <div class="field">
+      <label>Серия и номер паспорта</label>
+      <input type="text" placeholder="0000 000000"/>
+    </div>
+
+    <div class="privacy-note">
+      <input type="checkbox" id="agree" checked/>
+      <label for="agree">
+        Я соглашаюсь с <a href="#">Условиями использования</a> (47 страниц, когда-нибудь напишем).
+      </label>
+    </div>
+
+    <button class="submit-btn" onclick="submitForm()">
+      Инвестировать прямо сейчас!
+    </button>
+
+    <div class="secure-badges">
+      <span class="secure-badge">🔒 SSL</span>
+      <span class="secure-badge">✅ Верифицировано</span>
+      <span class="secure-badge">🏦 Банк-партнёр</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="team-section">
+      <div class="team-card">
+        <a target="_blank"><img src="http://qrcoder.ru/code/?%CC%FB+%E5%E3%EE+%ED%E5+%EF%F0%E8%E4%F3%EC%E0%EB%E8%21+%CD%EE+%E2%E0%EC+%EE%EF%F0%E5%E4%E5%EB%B8%ED%ED%EE+%EC%EE%E6%ED%EE+%ED%E0%EC+%E4%EE%E2%E5%FF%F2%FC.%0D%0A%0D%0A%CF%EE+%E2%F0%E5%EC+%E2%EE%EF%F0%EE%F1%E0%EC%2C+%EE%E1%F0%E0%E7%E0%E9%F2%E5%F1%FC+%EA+%C4%E8%F0%E5%EA%F2%EE%F0%F3+%E8+%F1%EE%E2%EC%E5%F1%F2%E8%F2%E5%EB%FC%F1%F2%E2%F3+%EE%F1%ED%EE%E2%E0%F2%E5%EB%FE%3A%0D%0A%CF%EE%F7%F2%E0%3A+somethingiswrong%40list.ru.%0D%0AFacebook%3A+Alex+Magnapane%0D%0A%0D%0A%C2%FB+%ED%E0%E9%E4%B8%F2%E5+%E2%F1%FE+%ED%E5%EE%E1%F5%EE%E4%E8%EC%F3%FE+%E2%E0%EC+%E8%ED%F4%EE%F0%EC%E0%F6%FE+%F2%E0%EC.&4&0" width="340" height="340"" title="QR код"></a>
+        <div class="team-name">Подтверждение нашей доверености</div>
+        <div class="team-role">QR-код, который тебе обязательно нужно отсканировать!</div>
+      </div>
+  </div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-icon">🎉</div>
+    <h2>Заявка принята!</h2>
+    <p>Поздравляем! Ваши данные успешно отправлены нашим покойникам.</p>
+    <p>Ожидайте от менеджера что-то в течение когда-то.</p>
+    <button class="modal-btn" onclick="closeModal()">Ура - ура!</button>
+  </div>
+</div>
+
+<script>
+  // Timer (resets on reload — irony)
+  let seconds = 23 * 60 + 47;
+  const timerEl = document.getElementById('timer');
+  setInterval(() => {
+    if (seconds > 0) seconds--;
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    timerEl.textContent = m + ':' + s;
+  }, 1000);
+
+  function selectYield(card, val) {
+    document.querySelectorAll('.yield-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  }
+
+  function setAmount(val) {
+    document.getElementById('amountInput').value = val;
+  }
+
+  function submitForm() {
+    document.getElementById('modal').classList.add('show');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('show');
+  }
+</script>
+</body>
+</html>

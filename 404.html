@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThrustUsCorp™ — Страница не найдена</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0b1e3d; --gold: #c9a84c; --gold-light: #e8c97a;
+      --cream: #f5f1e8; --text: #1a1a2e; --muted: #5a6375;
+    }
+    html, body { height: 100%; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem; height: 68px; flex-shrink: 0;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      position: relative; z-index: 10;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif; color: var(--gold);
+      font-size: 1.3rem; font-weight: 700; text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .shield {
+      width: 28px; height: 32px; background: var(--gold);
+      clip-path: polygon(50% 0%,100% 20%,100% 60%,50% 100%,0% 60%,0% 20%);
+    }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a {
+      color: rgba(255,255,255,0.5); text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ─── BACKGROUND ─── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0;
+      background: var(--navy);
+      overflow: hidden;
+    }
+    .bg-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(201,168,76,0.03) 0px, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 70px),
+        repeating-linear-gradient(-45deg, rgba(201,168,76,0.03) 0px, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 70px);
+    }
+    .bg-circle-1 {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.08);
+      width: 700px; height: 700px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 6s ease-in-out infinite;
+    }
+    .bg-circle-2 {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.05);
+      width: 950px; height: 950px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 6s ease-in-out infinite 1s;
+    }
+    .bg-circle-3 {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.03);
+      width: 1200px; height: 1200px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 6s ease-in-out infinite 2s;
+    }
+    .bg-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+    @keyframes breathe {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.04); opacity: 0.6; }
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 5;
+      padding: 2rem;
+      text-align: center;
+    }
+    .content {
+      /* allow room for two columns side-by-side */
+      max-width: 1000px;
+      width: 100%;
+      animation: fade-up 0.7s ease both;
+    }
+
+    /* helper: columns with QR on right */
+    .arrange {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .arrange .left {
+      flex: 1 1 300px;
+    }
+    .arrange .qr {
+      flex: 0 350px;
+      text-align: center;
+      margin-top: 10rem;
+    }
+    .arrange .qr img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .arrange {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .code-wrap {
+      position: relative; display: inline-block;
+      margin-bottom: 2.5rem;
+    }
+    .code {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(7rem, 18vw, 12rem);
+      font-weight: 900;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(201,168,76,0.35);
+      letter-spacing: -0.02em;
+      user-select: none;
+    }
+    .code-fill {
+      position: absolute; inset: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(7rem, 18vw, 12rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 40%, rgba(201,168,76,0.4) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.18;
+      user-select: none;
+    }
+    .shield-icon {
+      position: absolute;
+      top: 50%; left: 130%;
+      transform: translate(-50%, -50%);
+      width: clamp(50px, 10vw, 80px);
+      height: clamp(57px, 11.5vw, 91px);
+      background: var(--gold);
+      clip-path: polygon(50% 0%,100% 20%,100% 60%,50% 100%,0% 60%,0% 20%);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.9;
+    }
+    .shield-inner {
+      width: 38%; height: 38%;
+      background: var(--navy);
+      clip-path: polygon(50% 0%,100% 20%,100% 60%,50% 100%,0% 60%,0% 20%);
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.35rem 1rem; border-radius: 2px;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 700; line-height: 1.2;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    p {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem; line-height: 1.7;
+      max-width: 440px; margin: 0 auto 2.5rem;
+    }
+
+    .buttons {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 0.85rem 2rem; border-radius: 3px;
+      font-weight: 600; font-size: 0.88rem;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline {
+      background: transparent; color: rgba(255,255,255,0.7);
+      padding: 0.85rem 2rem; border-radius: 3px;
+      font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+    .links {
+      display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
+    }
+    .links a {
+      color: rgba(255,255,255,0.35); text-decoration: none;
+      font-size: 0.8rem; letter-spacing: 0.05em;
+      transition: color 0.2s;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .links a:hover { color: var(--gold); }
+    .links a span { font-size: 1rem; }
+
+    /* ─── FOOTER LINE ─── */
+    footer {
+      position: relative; z-index: 10;
+      padding: 1.2rem 4rem;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.73rem; color: rgba(255,255,255,0.2);
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      footer { padding: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="bg">
+  <div class="bg-pattern"></div>
+  <div class="bg-glow"></div>
+  <div class="bg-circle-1"></div>
+  <div class="bg-circle-2"></div>
+  <div class="bg-circle-3"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="shield"></div>ThrustUsCorp™
+  </a>
+  <div class="nav-links">
+    <a href="index.html#services">Услуги</a>
+    <a href="index.html#about">О нас</a>
+    <a href="index.html#testimonials">Отзывы</a>
+    <a href="index.html#cta">Контакты</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="content">
+
+    <div class="arrange">
+
+      <div class="left">
+        <div class="code-wrap">
+          <div class="code-fill">404</div>
+          <div class="code">404</div>
+          <div class="shield-icon">
+            <div class="shield-inner"></div>
+          </div>
+        </div>
+
+        <div class="tag">Страница не найдена</div>
+        <h1>Эта страница засекречена.<br>Или её никогда не существовало.</h1>
+        <p>Возможно, ссылка устарела, адрес введён с ошибкой, либо страница была перемещена в один из наших защищённых разделов. В любом случае — мы знаем, что вы здесь.</p>
+      </div>
+      <div class="qr">
+        <div>
+          <a target="_blank"><img src="http://qrcoder.ru/code/?%CC%FB+%E5%E3%EE+%ED%E5+%EF%F0%E8%E4%F3%EC%E0%EB%E8%21+%CD%EE+%E2%E0%EC+%EE%EF%F0%E5%E4%E5%EB%B8%ED%ED%EE+%EC%EE%E6%ED%EE+%ED%E0%EC+%E4%EE%E2%E5%FF%F2%FC.%0D%0A%0D%0A%CF%EE+%E2%F0%E5%EC+%E2%EE%EF%F0%EE%F1%E0%EC%2C+%EE%E1%F0%E0%E7%E0%E9%F2%E5%F1%FC+%EA+%C4%E8%F0%E5%EA%F2%EE%F0%F3+%E8+%F1%EE%E2%EC%E5%F1%F2%E8%F2%E5%EB%FC%F1%F2%E2%F3+%EE%F1%ED%EE%E2%E0%F2%E5%EB%FE%3A%0D%0A%CF%EE%F7%F2%E0%3A+somethingiswrong%40list.ru.%0D%0AFacebook%3A+Alex+Magnapane%0D%0A%0D%0A%C2%FB+%ED%E0%E9%E4%B8%F2%E5+%E2%F1%FE+%ED%E5%EE%E1%F5%EE%E4%E8%EC%F3%FE+%E2%E0%EC+%E8%ED%F4%EE%F0%EC%E0%F6%FE+%F2%E0%EC.&4&0" width="340" height="340"" title="QR код"></a>
+          <div class="team-name">Подтверждение нашей доверености</div>
+          <div class="team-role">QR-код, который тебе <b> обязательно</b> нужно отсканировать!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <a href="index.html" class="btn-primary">На главную</a>
+      <a href="index.html#services" class="btn-outline">Наши услуги</a>
+    </div>
+
+    <div class="links">
+      <a href="index.html#about"><span>🛡</span> О компании</a>
+      <a href="invest.html"><span>💼</span> Инвестировать</a>
+      <a href="why-trust.html"><span>✦</span> Почему мы</a>
+      <a href="index.html#cta"><span>✉</span> Контакты</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2024 ThrustUsCorp™. Все права защищены.</span>
+  <span>Ошибка 404 — документ не обнаружен</span>
+</footer>
+
+</body>
+</html>

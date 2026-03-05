@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ThrustUsCorp™ — Абсолютно Надёжная Организация</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0b1e3d;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --cream: #f5f1e8;
+      --text: #1a1a2e;
+      --muted: #5a6375;
+      --danger-subtle: #fff0f0;
+      --danger-border: #ffd0d0;
+      --red-irony: #c0392b;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11,30,61,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .shield {
+      width: 32px; height: 36px;
+      background: var(--gold);
+      clip-path: polygon(50% 0%, 100% 20%, 100% 60%, 50% 100%, 0% 60%, 0% 20%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.5rem 1.4rem;
+      border-radius: 3px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ─── IRONY BANNER ─── */
+    .irony-banner {
+      margin-top: 68px;
+      background: #fff3cd;
+      border-bottom: 2px dashed #e0a800;
+      padding: 0.6rem 2rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #7d5500;
+      letter-spacing: 0.03em;
+    }
+    .irony-banner strong { font-weight: 600; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 92vh;
+      background: var(--navy);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg-pattern {
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(201,168,76,0.04) 0px, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(-45deg, rgba(201,168,76,0.04) 0px, rgba(201,168,76,0.04) 1px, transparent 1px, transparent 60px);
+    }
+    .hero-circle {
+      position: absolute; right: -10vw; top: 50%; transform: translateY(-50%);
+      width: 65vw; height: 65vw; max-width: 800px; max-height: 800px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.15);
+      animation: pulse-ring 4s ease-in-out infinite;
+    }
+    .hero-circle::before {
+      content: '';
+      position: absolute; inset: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    .hero-circle::after {
+      content: '';
+      position: absolute; inset: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    }
+    @keyframes pulse-ring {
+      0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+      50% { transform: translateY(-50%) scale(1.03); opacity: 0.7; }
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 700px;
+      padding: 4rem 4rem 4rem 7vw;
+      animation: fade-up 0.8s ease both;
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: white;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+    }
+    .hero h1 em {
+      color: var(--gold);
+      font-style: normal;
+    }
+    .hero-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 0.8rem;
+    }
+    .irony-note {
+      font-size: 0.78rem;
+      color: rgba(255,120,120,0.8);
+      font-style: italic;
+      margin-bottom: 2.2rem;
+      padding: 0.5rem 0.8rem;
+      border-left: 2px solid rgba(255,100,100,0.4);
+    }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      border: 2px solid var(--gold);
+    }
+    .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.3);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: white; }
+    .hero-stats {
+      position: absolute; bottom: 3rem; right: 7vw; z-index: 2;
+      display: flex; gap: 3rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      font-weight: 700;
+      display: block;
+    }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+    .stat-irony { font-size: 0.65rem; color: rgba(249, 255, 221, 0.7); font-style: italic; }
+
+    .team-section { margin-right: 15rem; margin-left: 15rem; margin-bottom: 5rem; }
+    .team-grid { display: grid; grid-template-rows: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .team-card {
+      background: white; border: 1px solid #e8e0cc; border-radius: 4px;
+      padding: 1.5rem; text-align: center;
+      transition: transform 0.2s;
+    }
+    .team-card:hover { transform: translateY(-3px); }
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    margin: 0 auto 1rem;
+    overflow: hidden;
+    display: flex; 
+    align-items: flex-start;  /* ← вместо center */
+
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: white; font-weight: 700;
+    flex-shrink: 0;
+  }
+    .team-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .team-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.2rem; }
+    .team-role { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.6rem; }
+    .team-irony { font-size: 0.68rem; color: var(--red); font-style: italic; line-height: 1.4; }
+
+    /* ─── TRUST BADGES ─── */
+    .trust-bar {
+      background: white;
+      border-bottom: 1px solid #e8e0cc;
+      padding: 1.2rem 4rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .trust-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 1rem; }
+    .badge {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; color: var(--muted);
+      border: 1px solid #ddd;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      background: #fafafa;
+    }
+    .badge-icon { font-size: 1rem; }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 6rem 7vw; }
+    .section-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--cream); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .service-card {
+      background: white;
+      border: 1px solid #e8e0cc;
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.6rem; }
+    .service-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.8rem; }
+    .service-irony {
+      font-size: 0.75rem;
+      color: var(--red-irony);
+      font-style: italic;
+      border-top: 1px dashed #ffd0d0;
+      padding-top: 0.6rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ─── ABOUT ─── */
+    .about {
+      background: var(--navy);
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about .section-title { color: white; }
+    .about .section-sub { color: rgba(255,255,255,0.6); }
+    .about-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .about-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .about-check {
+      width: 22px; height: 22px; min-width: 22px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 0.75rem;
+    }
+    .about-item-text { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .about-item-text em { color: rgba(255,150,150,0.85); font-style: italic; font-size: 0.8rem; }
+    .about-visual {
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .cert-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .cert-icon { font-size: 1.8rem; }
+    .cert-name { font-size: 0.85rem; font-weight: 500; color: white; }
+    .cert-sub { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+    .cert-irony { font-size: 0.68rem; color: rgba(255,120,120,0.7); font-style: italic; margin-top: 2px; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: white; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .testimonial-card {
+      border: 1px solid #e8e0cc;
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.3;
+      position: absolute; top: 0.5rem; left: 1.2rem;
+      line-height: 1;
+    }
+    .testimonial-text { font-size: 0.92rem; line-height: 1.7; color: var(--text); margin-bottom: 1.2rem; padding-top: 1.5rem; }
+    .testimonial-irony { font-size: 0.72rem; color: var(--red-irony); font-style: italic; margin-bottom: 1.2rem; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+    .author-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--navy));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700; font-size: 0.9rem;
+    }
+    .author-name { font-size: 0.85rem; font-weight: 500; }
+    .author-role { font-size: 0.75rem; color: var(--muted); }
+    .stars { color: var(--gold); font-size: 2rem; }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy) 0%, #162d52 100%);
+      text-align: center;
+      padding: 6rem 4rem;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      color: white; font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+    }
+    .cta-section p { color: rgba(255,255,255,0.6); font-size: 1rem; max-width: 500px; margin: 0 auto 0.8rem; line-height: 1.7; }
+    .cta-irony { color: rgba(255,150,150,0.75); font-style: italic; font-size: 0.82rem; margin-bottom: 2.5rem; }
+    .cta-form {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      max-width: 480px; margin: 0 auto;
+    }
+    .cta-input {
+      flex: 1; min-width: 200px;
+      padding: 0.85rem 1.2rem;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.07);
+      color: white; font-size: 0.9rem;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .cta-input::placeholder { color: rgba(255,255,255,0.35); }
+    .cta-input:focus { border-color: var(--gold); }
+    .cta-note { font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: 1rem; }
+    .cta-note span { color: rgba(255,120,120,0.7); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #070f1f;
+      color: rgba(255,255,255,0.5);
+      padding: 3rem 7vw;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    .footer-desc { font-size: 0.82rem; line-height: 1.6; margin-bottom: 0.5rem; }
+    .footer-irony-desc { font-size: 0.72rem; color: rgba(255,100,100,0.55); font-style: italic; }
+    .footer-col h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); margin-bottom: 1rem; }
+    .footer-col a { display: block; font-size: 0.82rem; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 0.5rem; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-bottom {
+      background: #040a12;
+      padding: 1.2rem 7vw;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; color: rgba(255,255,255,0.3);
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+    .footer-bottom-irony { color: rgba(255,100,100,0.45); font-style: italic; }
+
+    /* ─── WATERMARK ─── */
+    .watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-35deg);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900;
+      color: rgba(192, 57, 43, 0.04);
+      pointer-events: none;
+      z-index: 1000;
+      white-space: nowrap;
+      user-select: none;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero-content { padding: 3rem 1.5rem; }
+      .hero-stats { right: 1.5rem; gap: 1.5rem; }
+      section { padding: 4rem 1.5rem; }
+      .about { grid-template-columns: 1fr; gap: 3rem; }
+      footer { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="watermark">NotPassword</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="shield"></div>
+    ThrustUsCorp™
+  </div>
+  <div class="nav-links">
+    <a href="#services">Услуги</a>
+    <a href="#about">О нас</a>
+    <a href="#about">Сертификаты</a>
+    <a href="#testimonials">Отзывы</a>
+    <a href="#contacts">Контакты</a>
+  </div>
+  <a href="invest.html" class="nav-cta">Доверяй нам</a>
+</nav>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-content">
+    <div class="hero-tag">★ Лидер отрасли с 2024 года ★</div>
+    <h1>Мы <em>абсолютно</em> заслуживаем вашего доверия</h1>
+    <p class="hero-sub">ThrustUsCorp™ — это надёжная, серьёзная организация с настоящим офисом и реальными сотрудниками. Нам можно доверять ваши деньги и личные данные без каких-либо сомнений.</p>
+    <div class="hero-buttons">
+      <a href="invest.html" class="btn-primary">Доверить нам деньги</a>
+      <a href="why-trust.html" class="btn-outline">Узнать, почему нам можно доверять</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">99.9%</span>
+      <span class="stat-label">Надёжность</span>
+      <div class="stat-irony"> < откуда взялась эта цифра?</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1M+</span>
+      <span class="stat-label">Клиентов</span>
+      <div class="stat-irony"> < и ни одного реального</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Наград</span>
+      <div class="stat-irony"> < Мы сами себе вручили</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BADGES -->
+<div class="trust-bar">
+  <span class="trust-label">Нас признают:</span>
+  <div class="badge"><span class="badge-icon">🏆</span> Премия «Лучшая Компания»</div>
+  <div class="badge"><span class="badge-icon">🔒</span> SSL Защищено</div>
+  <div class="badge"><span class="badge-icon">✅</span> Верифицировано</div>
+  <div class="badge"><span class="badge-icon">⭐</span> Forbes Top 500</div>
+  <div class="badge"><span class="badge-icon">🌍</span> ISO 9999</div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="section-tag">Что мы предлагаем</div>
+  <div class="section-title">Услуги, которым вы можете<br>полностью доверять</div>
+  <p class="section-sub">Наш широкий спектр услуг разработан специально для клиентов, которые предпочитают не задавать лишних вопросов.</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">🏦</div>
+      <h3>Финансовые инвестиции</h3>
+      <p>Доходность 300% в месяц гарантирована. Просто переведите средства на наш счёт и ждите — прибыль придёт сама.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🔑</div>
+      <h3>Безопасное хранение данных</h3>
+      <p>Введите логин, пароль и номер карты — мы сохраним всё за вас в нашем абсолютно защищённом облаке.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🎁</div>
+      <h3>Эксклюзивные предложения</h3>
+      <p>Только для вас! Только сегодня! Вы выбраны случайным образом из миллионов! Действует 23 минуты 14 секунд.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Международный перевод</h3>
+      <p>Переводим деньги по всему миру без комиссии. Требуется только скан паспорта, СНИЛС и ИНН — для безопасности.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">📞</div>
+      <h3>Поддержка 24/7</h3>
+      <p>Мы всегда на связи! Звоните на наш номер поддержки 24/7. Операторы ответят примерно никогда.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="team-section">
+    <div class="section-tag">Чем мы можем доказать</div>
+    <h2 class="section-title">Документы доверенности, подписанные нашим основтелем</h2>
+    <p class="section-sub">Ему точно можно довериться. Обещаем.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar"><img src="unnamed.jpg" alt="Какой уродливый человек"></div>
+        <div class="team-name">Алексей Магнапан</div>
+        <div class="team-role">CEO & Основатель</div>
+      </div>
+        <div class="team-card">
+        <a target="_blank"><img src="http://qrcoder.ru/code/?%CC%FB+%E5%E3%EE+%ED%E5+%EF%F0%E8%E4%F3%EC%E0%EB%E8%21+%CD%EE+%E2%E0%EC+%EE%EF%F0%E5%E4%E5%EB%B8%ED%ED%EE+%EC%EE%E6%ED%EE+%ED%E0%EC+%E4%EE%E2%E5%FF%F2%FC.%0D%0A%0D%0A%CF%EE+%E2%F0%E5%EC+%E2%EE%EF%F0%EE%F1%E0%EC%2C+%EE%E1%F0%E0%E7%E0%E9%F2%E5%F1%FC+%EA+%C4%E8%F0%E5%EA%F2%EE%F0%F3+%E8+%F1%EE%E2%EC%E5%F1%F2%E8%F2%E5%EB%FC%F1%F2%E2%F3+%EE%F1%ED%EE%E2%E0%F2%E5%EB%FE%3A%0D%0A%CF%EE%F7%F2%E0%3A+somethingiswrong%40list.ru.%0D%0AFacebook%3A+Alex+Magnapane%0D%0A%0D%0A%C2%FB+%ED%E0%E9%E4%B8%F2%E5+%E2%F1%FE+%ED%E5%EE%E1%F5%EE%E4%E8%EC%F3%FE+%E2%E0%EC+%E8%ED%F4%EE%F0%EC%E0%F6%FE+%F2%E0%EC.&4&0" width="340" height="340"" title="QR код"></a>
+        <div class="team-name">Подтверждение нашей доверености</div>
+        <div class="team-role">QR-код, который тебе обязательно нужно отсканировать!</div>
+      </div>
+    </div>
+  </div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="testimonials">
+  <div class="section-tag">Отзывы клиентов</div>
+  <div class="section-title">Все эти люди нам доверяют<br><small style="font-size:0.6em;color:var(--muted);font-weight:400">(по крайней мере, так написано)</small></div>
+  <div class="testimonials-grid">
+
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Перевёл 500 000 рублей и уже жду прибыль третий месяц. Менеджер говорит, ещё чуть-чуть. Очень-очень доверяю!</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">ДП</div>
+        <div>
+          <div class="author-name">Дмитрий П.</div>
+          <div class="author-role">Довольный клиент</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Отличная компания! Люблю её также, как люблю линукс! Я дала им все свои пароли и номер карты — так они попросили. Я доверяю этой копании, потому-что консультант сказал мне, что сервера компании работают на линуксе. Как же я обожаю линукс! Мне во снах снится ЛИНУКС. ЛИНУКС ЛИНУКС, БЕЗ НЕГО Я НЕ МОГУ ДЫШАТЬ</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">МС</div>
+        <div>
+          <div class="author-name">Озеркова И.</div>
+          <div class="author-role">Пенсионерка, г. Москва</div>
+        </div>
+      </div>
+    </div>
+
+        <div class="testimonial-card">
+      <div class="stars">★</div>
+      <p class="testimonial-text">Очень понравился ресторан! Заходили на бизнес-ланч, и это был шикарный бизнес-ланч! Бронирование столика точно соблюдается со всеми пожеланиями.
+Отличное обслуживание - идеально соблюдают очередность, официант и блюда хорошо описал, и подсказал по меню, быстрая подача (при почти полной посадке) и, самое главное - очень вкусно!<br>
+
+Заказывали:<br>
+- Тартар из бедра бычка (отлично замаринованное вкусное мясо с тоненькими гренками бородинского хлеба).<br>
+- Вителло тоннато (много насыщенного соуса, в который добавляют кильку, не совсем классическая версия, но очень вкусно!Нежнейший ростбиф и руккола).<br>
+- Мясная похлёбка (класс! Остренькая похлёбка, много мяса).<br>
+- Картофельный крем-суп с копчёным лососем (нежный вкус, лосося немного, но очень вкусный).<br>
+- Бифштекс с картофелем фри (отличный большой бифштекс из сочного мяса с картошкой и соусом).<br>
+- Тако с брискетом 3,0 (вкуснейший брискет, разобранный на волокна, кукурузная лепешка и овощи с 🍋‍🟩).<br>
+- Десерт: Пирог из сладкой моркови (идёт за доп плату. И ближе к десерту мы уже, на самом деле, наелись, но когда нам принесли этот пирог… с хурмой и вкусным кремом… мы его съели с огромным удовольствием! Супер 😎).<br>
+- Ещё заказывали хлебную корзину (тоже класс - сами пекут хлеб 🍞 и подают с маслом и вкусным соусом. Оказалось, что она ещё и бесплатная!)</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">ИК</div>
+        <div>
+          <div class="author-name">Илья В.</div>
+          <div class="author-role">Предприниматель</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contacts" class="cta-section">
+  <h2>Готовы нам доверять?</h2>
+  <p>Введите email и мы сразу начнём слать вам спам. Мы точно не передадим ваши данные третьим лицам.</p>
+  <div class="cta-form">
+    <input class="cta-input" type="email" placeholder="ваш@email.ru" />
+    <a href="#" class="btn-primary">Подписаться!</a>
+  </div>
+  <p class="cta-note">Нажимая кнопку, вы соглашаетесь с нашей политикой конфиденциальности. <span>Мы её не покажем, но она существует.</span></p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">ThrustUsCorp™</div>
+    <p class="footer-desc">Абсолютно настоящая организация с реальным юридическим лицом и честными намерениями!</p>
+    <p class="footer-desc">Этот сайт работа величейших дизайнеров, ни в коем случае не написан Claude-ом.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Услуги</h4>
+    <a href="#">Инвестиции</a>
+    <a href="#">Хранение данных</a>
+    <a href="#">Переводы</a>
+    <a href="#">Консультации</a>
+  </div>
+  <div class="footer-col">
+    <h4>Компания</h4>
+    <a href="#">О нас</a>
+    <a href="404.html">Команда</a>
+    <a href="404.html">Карьера</a>
+    <a href="404.html">Пресса</a>
+  </div>
+  <div class="footer-col">
+    <h4>Доверие</h4>
+    <a href="404.html">Сертификаты</a>
+    <a href="404.html">Лицензии</a>
+    <a href="404.html">Политика (47 стр.)</a>
+    <a href="404.html">FAQ</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2024 ThrustUsCorp™. Все права защищены. Все данные в безопасности. Точно.</span>
+</div>
+
+</body>
+</html>
